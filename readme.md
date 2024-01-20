@@ -19,8 +19,10 @@ To use the script, run it from the command line with the following syntax:
 
 ```
 npm install -g repo-to-markdown
-repo-to-markdown <directory_path> [--output .] [--includeHidden]
+repo-to-markdown <directory_path> [--output .] [--git] [--includeHidden]
 ```
+
+Use --git to ignore files listed in .gitignore
 
 ## Output
 
