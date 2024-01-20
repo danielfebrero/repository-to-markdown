@@ -1,6 +1,6 @@
 {
-  "name": "repository-to-markdown",
-  "version": "1.0.1",
+  "name": "repo-to-markdown",
+  "version": "1.0.0",
   "description": "Repository to markdown converter",
   "main": "index.js",
   "bin": {

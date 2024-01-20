@@ -18,8 +18,8 @@ No installation is required beyond having Node.js on your system. Simply downloa
 To use the script, run it from the command line with the following syntax:
 
 ```
-npm install -g repository-to-markdown
-repository-to-markdown <directory_path> [--includeHidden]
+npm install -g repo-to-markdown
+repo-to-markdown <directory_path> [--includeHidden]
 ```
 
 ## Output

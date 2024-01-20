@@ -3,10 +3,17 @@
 const fs = require("fs")
 const path = require("path")
 
-const args = process.argv
-const directoryPath = args.find((arg) => !arg.startsWith("--")) // Find the first non-flag argument as the folder path
-const includeHidden = args.includes("--includeHidden") // Check if '--includeHidden' is present in the arguments
-const outputFile = "output.md" // Name of the output file
+// Les arguments de ligne de commande sont traités ici
+const args = process.argv.slice(2) // On enlève les deux premiers arguments (node et le chemin du script)
+const directoryPath = args[0] ? path.resolve(args[0]) : process.cwd() // Résout le chemin fourni ou utilise le répertoire courant
+const includeHidden = args.includes("--includeHidden")
+
+const outputArgIndex = args.findIndex((arg) => arg === "--output")
+const outputDir =
+  outputArgIndex !== -1 && args[outputArgIndex + 1]
+    ? args[outputArgIndex + 1]
+    : "."
+const outputFile = path.join(outputDir, "output.md")
 
 if (!directoryPath) {
   console.error("Please provide a folder path as an argument.")
