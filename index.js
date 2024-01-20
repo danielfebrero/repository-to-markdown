@@ -2,8 +2,8 @@ const fs = require("fs")
 const path = require("path")
 
 const args = process.argv
-const directoryPath = args[2] // The folder path
-const includeHidden = args[3] === "includeHidden" // Include hidden files if the argument is 'includeHidden'
+const directoryPath = args.find((arg) => !arg.startsWith("--")) // Find the first non-flag argument as the folder path
+const includeHidden = args.includes("--includeHidden") // Check if '--includeHidden' is present in the arguments
 const outputFile = "output.md" // Name of the output file
 
 if (!directoryPath) {

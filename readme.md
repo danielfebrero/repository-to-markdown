@@ -1,4 +1,4 @@
-# Folder to Markdown
+# Repository to Markdown
 
 ## Description
 
@@ -18,7 +18,7 @@ No installation is required beyond having Node.js on your system. Simply downloa
 To use the script, run it from the command line with the following syntax:
 
 ```
-node index.js <directory_path> [includeHidden]
+node index.js <directory_path> [--includeHidden]
 ```
 
 ## Output
