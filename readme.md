@@ -19,7 +19,7 @@ To use the script, run it from the command line with the following syntax:
 
 ```
 npm install -g repo-to-markdown
-repo-to-markdown <directory_path> [--includeHidden]
+repo-to-markdown <directory_path> [--output .] [--includeHidden]
 ```
 
 ## Output

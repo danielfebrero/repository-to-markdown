@@ -1,10 +1,11 @@
 {
   "name": "repo-to-markdown",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Repository to markdown converter",
   "main": "index.js",
   "bin": {
-    "repo-to-markdown": "./index.js"
+    "repo-to-markdown": "./index.js",
+    "rtm": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
