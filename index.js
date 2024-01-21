@@ -16,6 +16,17 @@ const outputDir =
     : "."
 const outputFile = path.join(outputDir, "output.md")
 
+function isLikelyTextFile(filePath) {
+  try {
+    const data = fs.readFileSync(filePath, "utf8")
+    // Check for a substantial number of non-text characters
+    const nonTextChars = data.match(/[\x00-\x08\x0E-\x1F\x80-\xFF]/g) || []
+    return nonTextChars.length < data.length * 0.1 // less than 10% non-text chars
+  } catch (error) {
+    return false
+  }
+}
+
 function getGitignorePatterns(dir) {
   try {
     const gitignorePath = path.join(dir, ".gitignore")
@@ -70,9 +81,17 @@ function listFiles(dir, filelist = [], gitignorePatterns = []) {
 function createMarkdownFile(files) {
   let markdownContent = ""
   files.forEach(function (filePath) {
-    const content = fs.readFileSync(filePath, "utf8")
-    const extension = path.extname(filePath).slice(1)
-    markdownContent += `path: ${filePath}\n\`\`\`${extension}\n${content}\n\`\`\`\n\n`
+    if (!isLikelyTextFile(filePath)) {
+      console.warn(`Skipping likely binary or non-text file: ${filePath}`)
+      return
+    }
+    try {
+      const content = fs.readFileSync(filePath, "utf8")
+      const extension = path.extname(filePath).slice(1)
+      markdownContent += `path: ${filePath}\n\`\`\`${extension}\n${content}\n\`\`\`\n\n`
+    } catch (error) {
+      console.warn(`Error reading file ${filePath}: ${error}`)
+    }
   })
   fs.writeFileSync(outputFile, markdownContent)
 }
